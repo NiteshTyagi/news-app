@@ -15,11 +15,12 @@ class News extends Component{
     api_key = process.env.REACT_APP_NEWSDATA_IO_API;
     
     async updateNews() {
+        var url = "";
         if(this.props.category){
-            var url = `${this.endpoint_url}?apikey=${this.api_key}&category=${this.props.category}&language=${this.props.language}&country=${this.props.country}&page=${this.state.page}`;
+            url = `${this.endpoint_url}?apikey=${this.api_key}&category=${this.props.category}&language=${this.props.language}&country=${this.props.country}&page=${this.state.page}`;
         }
         else{
-            var url = `${this.endpoint_url}?apikey=${this.api_key}&language=${this.props.language}&country=${this.props.country}&page=${this.state.page}`;
+            url = `${this.endpoint_url}?apikey=${this.api_key}&language=${this.props.language}&country=${this.props.country}&page=${this.state.page}`;
         }
         let data = await fetch(url);
         let parsedData = await data.json()
