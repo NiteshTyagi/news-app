@@ -10,11 +10,11 @@ class News extends Component{
             page:1,
         }
     }
-
+    
     endpoint_url = process.env.REACT_APP_NEWSDATA_API_ENDPOINT;
     api_key = process.env.REACT_APP_NEWSDATA_IO_API;
     
-    async updateNews() {
+    async updateNews(q=undefined) {
         var url = "";
         if(this.props.category){
             url = `${this.endpoint_url}?apikey=${this.api_key}&category=${this.props.category}&language=${this.props.language}&country=${this.props.country}&page=${this.state.page}`;
@@ -22,6 +22,7 @@ class News extends Component{
         else{
             url = `${this.endpoint_url}?apikey=${this.api_key}&language=${this.props.language}&country=${this.props.country}&page=${this.state.page}`;
         }
+
         let data = await fetch(url);
         let parsedData = await data.json()
         this.setState({
@@ -32,8 +33,10 @@ class News extends Component{
     }
 
     async componentDidMount(){
-        this.updateNews();
+        // this.updateNews();
     }
+    
+    
 
     handlePrevClick = async () =>{
         this.setState({

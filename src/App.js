@@ -1,6 +1,5 @@
 // import logo from './logo.svg';
 import './App.css';
-import { useState } from 'react';
 import Navbar from './components/navbar';
 import News from './components/news';
 
@@ -24,16 +23,16 @@ const categories = [
 ]
 const language = "en";
 const country = "in,gb,ua,ru,us";
+
 function App(props) {
   
-  const [query, setQuery] = useState(''); 
 
   return (
     <div className="container-fluid px-0">
       <Router>
-        <Navbar categories={categories} query={query} setQuery={setQuery} />
+        <Navbar categories={categories} />
         <Routes>
-          <Route  exact path="/" element={<News key="general" language={language} category={null} country={country} /> }/>
+          <Route  exact path="/" element={<News  key="general" language={language} category={null} country={country} /> }/>
           
           <Route  exact path="/business" element={
             <News key="business" category="business" language={language}  country={country} />}/> 
