@@ -1,17 +1,13 @@
-import React , {Component} from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-class NewsItem extends Component{
-    // constructor(props){
-    //     super(props);
-    // }
 
+
+const NewsItem = (props) => {
+
+    const imageUrl = props.article?.image_url? props.article.image_url: process.env.REACT_APP_DEFAULT_IMAGEURL;
+    const {title, description, link, pubDate, category, country, source_id}  = props.article;
     
-    render(){
-        const imageUrl = this.props.article?.image_url? this.props.article.image_url: process.env.REACT_APP_DEFAULT_IMAGEURL;
-
-        const {title, description, link, pubDate, category, country, source_id}  = this.props.article;
-
-        return (
+    return (
             <div className="col-lg-4 col-md-2 col-12 my-3">
                 <div className="card">
                     <div className="card-header text-muted">
@@ -27,7 +23,7 @@ class NewsItem extends Component{
                         })}
 
                         <span className="badge badge-info ml-2 p-1">SOURCE : {source_id}</span>
-
+                        
                     </div>
                     <img className="card-img-top" src={imageUrl} alt="News"/>
                     <div className="card-body">
@@ -38,7 +34,6 @@ class NewsItem extends Component{
                 </div>
             </div>
         )
-    }
 }
 
 export default NewsItem;

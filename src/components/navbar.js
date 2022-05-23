@@ -1,10 +1,23 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 
 function Navbar(props){
     
     const categories = props.categories;
+    
+    const [queryValue, setqueryValue] = useState('');
+    let navigate = useNavigate();
+
+    const handleOnchange = (event) =>{
+        setqueryValue(event.target.value);
+    }
+
+    const handleOnClick = () =>{
+        props.setQuery(queryValue);
+        navigate(queryValue!==''?`?search=${queryValue}`:'?');
+    }
+    
     return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <a rel="noreferrer" className="navbar-brand brand-logo" target="_blank"  href="https://www.newsdata.io"><img className="web-icon" src="https://newsdata.io/images/global/newsdata-icon.png" alt="newsdata icon"/> NEWSDATA <span></span></a>
@@ -31,10 +44,10 @@ function Navbar(props){
                             </div>
                         </li>
                     </ul>
-                    {/* <div className="form-inline my-2 my-lg-0">
+                    <div className="form-inline my-2 my-lg-0">
                         <input className="form-control mr-sm-2" type="search" value={queryValue} placeholder="Search" onChange={handleOnchange} aria-label="Search"/>
                         <button className="btn btn-outline-light my-2 my-sm-0" onClick={handleOnClick}>Search</button>
-                    </div> */}
+                    </div>
                 </div>
             </nav>
         )    

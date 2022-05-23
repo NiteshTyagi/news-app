@@ -7,6 +7,7 @@ import { BrowserRouter as Router,
   Routes,
   Route,
 } from 'react-router-dom';
+import { useState } from 'react';
 
 const categories = [
   "business",
@@ -26,46 +27,47 @@ const country = "in,gb,ua,ru,us";
 
 function App(props) {
   
+  const [query, setQuery] = useState('');
 
   return (
     <div className="container-fluid px-0">
       <Router>
-        <Navbar categories={categories} />
+        <Navbar categories={categories}  setQuery={setQuery} />
         <Routes>
-          <Route  exact path="/" element={<News  key="general" language={language} category={null} country={country} /> }/>
+          <Route  exact path="/" element={<News query={query}  key="general" language={language} category={null} country={country} /> }/>
           
           <Route  exact path="/business" element={
-            <News key="business" category="business" language={language}  country={country} />}/> 
+            <News query={query} key="business" category="business" language={language}  country={country} />}/> 
           
           <Route  exact path="/entertainment" element={
-            <News key="entertainment" category="entertainment" language={language}  country={country} />}/>
+            <News query={query} key="entertainment" category="entertainment" language={language}  country={country} />}/>
           
           <Route  exact path="/environment" element={
-            <News key="environment" category="environment" language={language}  country={country} />} />
+            <News query={query} key="environment" category="environment" language={language}  country={country} />} />
           
           <Route  exact path="/food" element={
-            <News key="food" category="food" language={language}  country={country} />} />
+            <News query={query} key="food" category="food" language={language}  country={country} />} />
           
           <Route  exact path="/health" element={
-            <News key="health" category="health" language={language}  country={country}/>} />
+            <News query={query} key="health" category="health" language={language}  country={country}/>} />
           
           <Route  exact path="/politics" element={
-            <News key="politics" category="politics" language={language}  country={country}/>} />
+            <News query={query} key="politics" category="politics" language={language}  country={country}/>} />
           
           <Route  exact path="/science" element={
-            <News key="science" category="science" language={language}  country={country}/>} />
+            <News query={query} key="science" category="science" language={language}  country={country}/>} />
           
           <Route  exact path="/sports" element={
-            <News key="sports" category="sports" language={language}  country={country}/>} />
+            <News query={query} key="sports" category="sports" language={language}  country={country}/>} />
           
           <Route  exact path="/technology" element={
-            <News key="technology" category="technology" language={language}  country={country}/>} />
+            <News query={query} key="technology" category="technology" language={language}  country={country}/>} />
           
           <Route  exact path="/top" element={
-            <News key="top" category="top" language={language}  country={country}/>} />
+            <News query={query} key="top" category="top" language={language}  country={country}/>} />
           
           <Route  exact path="/world" element={
-            <News key="world" category="world" language={language}  country={country}/>} />
+            <News query={query} key="world" category="world" language={language}  country={country}/>} />
           
         </Routes>
       </Router>
